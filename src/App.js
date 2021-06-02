@@ -2,15 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import MainLayout from './components/layout/MainLayout/MainLayout';
-
 import Home from './components/views/Home/Home';
 import Trips from './components/views/Trips/TripsContainer';
 import Countries from './components/views/Countries/CountriesContainer';
 import Regions from './components/views/Regions/RegionsContainer';
 import Info from './components/views/Info/Info';
-import Trip from './components/views/Trip/Trip';
+import Trip from './components/views/Trip/TripContainer';
 import Country from './components/views/Country/Country';
 import NotFound from './components/views/NotFound/NotFound';
 
