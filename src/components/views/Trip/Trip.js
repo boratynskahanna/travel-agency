@@ -13,7 +13,7 @@ import ListItem from '../../common/ListItem/ListItem';
 
 import styles from './Trip.scss';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import OrderForm from '../../features/OrderForm/OrderForm';
+import OrderForm from '../../features/OrderForm/OrderFormContainer';
 
 
 
