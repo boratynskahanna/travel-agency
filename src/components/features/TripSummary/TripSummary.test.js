@@ -19,21 +19,17 @@ describe('Component TripSummary', () => {
     expect(component.find('img').prop('src')).toEqual(expectedImage);
     expect(component.find('img').prop('alt')).toEqual(expectedName);
   });
+ 
   it('should render props name, cost, days', () => {
     const expectedName = 'name',
       expectedCost = '100',
       expectedDays = 1;
     
-    const component = shallow(<TripSummary image={'image'} tags={[]} name={expectedName} cost={expectedCost} days={1} id={'id'} />);
+    const component = shallow(<TripSummary image={'image'} tags={[]} name={expectedName} cost={expectedCost} days={expectedDays} id={'id'} />);
     expect(component.find('.title').text()).toEqual(expectedName);
-    expect(component.find('.details span').first().text()).toEqual(`${expectedDays} days`);
-    expect(component.find('.details span').last().text()).toEqual(`from ${expectedCost}`);
-
+    expect(component.find('.details span').at(0).text()).toEqual(`${expectedDays} days`);
+    expect(component.find('.details span').at(1).text()).toEqual(`from ${expectedCost}`);
   });
-  it('should throw error without required props', () => {
-    expect(() => shallow(<TripSummary />)).toThrow();
-  });
-
 
   it('should render three tags', () => {
     const expectedTags = ['tag1', 'tag2', 'tag3'];
