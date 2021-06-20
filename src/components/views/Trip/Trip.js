@@ -17,7 +17,7 @@ import OrderForm from '../../features/OrderForm/OrderFormContainer';
 
 
 
-const Trip = ({error, name, image, cost, days, country, intro}) => {
+const Trip = ({error, name, image, cost, days, country, intro, id}) => {
   if(error) return <NotFound />;
   else return (
     <Section>
@@ -46,7 +46,7 @@ const Trip = ({error, name, image, cost, days, country, intro}) => {
         <Row>
           <Col xs={12}>
             <PageTitle text='Trip details' />
-            <OrderForm tripCost={cost} />
+            <OrderForm tripCost={cost} tripDetails={{tripId: id, countryCode: country.alpha2Code, tripName: name}} />
             
           </Col>
         </Row>

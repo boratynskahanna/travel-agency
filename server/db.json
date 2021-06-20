@@ -39,6 +39,23 @@
       "start-date": "2021-06-08T20:00:00.000Z",
       "totalCost": "$52,281",
       "id": 3
+    },
+    {
+      "car-rental": "full",
+      "accommodation": "house",
+      "features": [
+        "all-inclusive"
+      ],
+      "adults": 1,
+      "children": 0,
+      "name": "hanna",
+      "contact": "fghfgh",
+      "start-date": "",
+      "totalCost": "$52,681",
+      "tripId": "5cc1d10130dfa407e2e54e20",
+      "countryCode": "TR",
+      "tripName": "Pleasant travel in cool Turkey",
+      "id": 4
     }
   ]
 }
