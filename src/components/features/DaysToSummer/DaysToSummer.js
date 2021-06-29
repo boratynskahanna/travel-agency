@@ -4,58 +4,39 @@ import styles from './DaysToSummer.scss';
 
 
 class DaysToSummer extends React.Component {
-  constructor() {
-    super();
-
-    setInterval(() => this.forceUpdate(), 1000);
-  }
 
   getTimeTillSummer() {
-    const currentDate = new Date();
+    let currentDate = new Date();
+    currentDate = new Date(Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate(), 0, 0, 0, 0));
     const summerStart = new Date(Date.UTC(currentDate.getUTCFullYear(), 5, 21));
     const summerEnd = new Date(Date.UTC(currentDate.getUTCFullYear(), 8, 23));
-    console.log('CurrentDate', currentDate);
-    console.log('Summerstart', summerStart);
-    console.log('SummerEnd', summerEnd);
+    
+    // if it's summer return empty string and do nothing
+    if (currentDate.getTime() >= summerStart.getTime() && currentDate.getTime() <= summerEnd.getTime()) return null;
+    
+    // if it's not summer, then go further and check currentDate is past summer of current year. If yes, change suemrStart year for next year.
+    if (currentDate > summerEnd) summerStart.setUTCFullYear(currentDate.getUTCFullYear() + 1);
 
-    if (
-      (currentDate.getUTCMonth() == summerEnd.getUTCMonth() &&
-        currentDate.getUTCDate() > summerEnd.getUTCDate()) ||
-      currentDate.getUTCMonth() > summerEnd.getUTCMonth() ||
-      currentDate.getUTCMonth() < summerStart.getUTCMonth() ||
-      (currentDate.getUTCMonth() == summerStart.getUTCMonth() &&
-        currentDate.getUTCDate() < summerStart.getUTCDate())
-    ) {
-      if (
-        currentDate.getUTCMonth() > summerEnd.getUTCMonth() ||
-        (currentDate.getUTCMonth() == summerEnd.getUTCMonth() &&
-          currentDate.getUTCDate > summerEnd.getUTCDate())
-      ) {
-        summerStart.setUTCFullYear(currentDate.getUTCFullYear() + 1);
-      }
+    // count the seoconds difference between sumsmerStart and currentDate and covert it to days
+    const summerDay = Math.floor(summerStart.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
 
-      const summerDay = Math.floor(
-        (summerStart.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24)
-      );
-
-      if (summerDay > 1) {
-        return summerDay + ' DAYS';
-      } else {
-        return summerDay + 'DAY';
-      }
-    } else {
-      return '';
-    }
+    if (summerDay > 1) return summerDay + ' DAYS';
+    else return 'DAY';
+  
   }
 
   render() {
     const days = this.getTimeTillSummer();
-    return (
-      <div className={styles.component}>
+    if(!days) return null; 
+    else {
+      
+      return (
+        <div className={styles.component}>
         
-        <h2 className={styles.title}>{days}</h2>
-      </div>
-    );
+          <h2 className={styles.title}>{days}</h2>
+        </div>
+      );
+    }
   }
 }
 
